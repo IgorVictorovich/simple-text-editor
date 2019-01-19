@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { Words, WordFindingService } from '../services/word-finding.service';
 import { TextFormatService } from '../services/text-format.service';
 
@@ -9,12 +9,18 @@ export enum FormatOption {
   ClearAll = 'clear_all'
 }
 
+const SAMPLE = `
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur,
+mollitia labore? Alias vero nulla placeat aut eum enim numquam odit commodi.
+Excepturi quibusdam quod mollitia veniam deserunt, culpa nam sint!
+`;
+
 @Component({
   selector: 'app-text-editor',
   templateUrl: 'text-editor.component.html',
   styleUrls: ['text-editor.component.scss'],
 })
-export class TextEditorComponent implements OnInit {
+export class TextEditorComponent implements AfterViewInit {
 
   words: Words = [];
 
@@ -28,7 +34,9 @@ export class TextEditorComponent implements OnInit {
     private _textFormat: TextFormatService) {
   }
 
-  ngOnInit() {
+  ngAfterViewInit() {
+    const savedText = this._textFormat.loadText();
+    this.textArea.nativeElement.innerHTML = savedText || SAMPLE;
   }
 
   onLoadSimilarClick() {
@@ -49,6 +57,7 @@ export class TextEditorComponent implements OnInit {
 
   change(value: string) {
     this._textFormat.replaceSelectedText(value);
+    this._textFormat.saveText(this.textArea.nativeElement.innerHTML);
   }
 
   applyCommand(option: FormatOption) {
@@ -65,6 +74,7 @@ export class TextEditorComponent implements OnInit {
         this.textArea.nativeElement.innerHTML = innerHTML;
         break;
     }
+    this._textFormat.saveText(this.textArea.nativeElement.innerHTML);
   }
 
 }

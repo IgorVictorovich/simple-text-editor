@@ -28,7 +28,8 @@ import { TextFormatService } from './app/services/text-format.service';
   bootstrap: [TextEditorComponent],
   providers: [WordFindingService, TextFormatService]
 })
-export class AppModule { }
+export class AppModule { 
+}
 
 platformBrowserDynamic().bootstrapModule(AppModule);
 

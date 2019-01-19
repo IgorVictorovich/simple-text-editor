@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 
+const STORAGE_KEY = 'FORMATTED-TEXT'
+
 @Injectable()
 export class TextFormatService {
+    
 
     clearFormat(innerHTML: string): string {
         innerHTML = this.removeTags('<b>', innerHTML);
@@ -33,6 +36,14 @@ export class TextFormatService {
                 range.insertNode(document.createTextNode(replacementText));
             }
         }
+    }
+
+    loadText() {
+        return window.sessionStorage.getItem(STORAGE_KEY);
+    }
+
+    saveText(html: string) {
+        window.sessionStorage.setItem(STORAGE_KEY, html);
     }
 
     private removeTags(tag: string, text: string) {
