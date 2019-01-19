@@ -1,0 +1,43 @@
+<div class="editor-actions">
+    <div class="style-actions">
+        <button mat-icon-button matTooltip="Clear text format" (click)="applyCommand('clear_all')">
+            <mat-icon ria-label="format clear">format_clear</mat-icon>
+        </button>
+    </div>
+    <div class="style-actions grid-3">
+        <button mat-icon-button  (click)="applyCommand('b')">
+            <mat-icon aria-label="format bold">format_bold</mat-icon>
+        </button>
+        <button mat-icon-button (click)="applyCommand('i')">
+            <mat-icon aria-label="format italic">format_italic</mat-icon>
+        </button>
+        <button mat-icon-button (click)="applyCommand('u')">
+            <mat-icon aria-label="format underlined">format_underlined</mat-icon>
+        </button> 
+    </div>
+    <div class="additional-actions grid-3">
+        <button mat-icon-button matTooltip="Load similar words" (click)="onLoadSimilarClick($event)">
+            <mat-icon>
+                translate
+            </mat-icon>   
+        </button>
+    </div>
+</div>
+<mat-divider class="p-24-0"></mat-divider>
+<div>
+    <div #textArea contenteditable="true">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur,
+        mollitia labore? Alias vero nulla placeat aut eum enim numquam odit commodi.
+        Excepturi quibusdam quod mollitia veniam deserunt, culpa nam sint!
+    </div>
+</div>
+<div *ngIf="words?.length > 0">
+    <p>Variants: </p>
+    <mat-nav-list>
+        <mat-list-item *ngFor="let item of words">
+            <button mat-button (click)="change(item.word)">
+                {{ item.word }}
+            </button>
+        </mat-list-item>
+    </mat-nav-list>    
+</div>

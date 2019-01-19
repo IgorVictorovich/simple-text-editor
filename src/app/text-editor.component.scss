@@ -1,0 +1,22 @@
+.width-100 {
+    width: 100%;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 50px);
+}
+
+.editor-actions {
+  display: flex;
+  flex-direction: row;
+}
+
+.style-actions {
+  border-right: 1px solid #e0e0e0e0; 
+}
+
+.p-24-0 {
+  padding: 24px 0;
+}
+
