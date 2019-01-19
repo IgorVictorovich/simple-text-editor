@@ -1,17 +1,17 @@
 import './polyfills';
 
-import {HttpClientModule} from '@angular/common/http';
-import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatNativeDateModule} from '@angular/material';
-import {BrowserModule} from '@angular/platform-browser';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DemoMaterialModule} from './material-module';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material';
+import { BrowserModule } from '@angular/platform-browser';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DemoMaterialModule } from './material-module';
 
-import {TextEditorComponent} from './app/text-editor.component';
-import { EditorHoverOptionsComponent } from './app/editor-hover-options/editor-hover-options.component';
-import { WordFindingService } from './app/word-finding.service';
+import { TextEditorComponent } from './app/components/text-editor.component';
+import { WordFindingService } from './app/services/word-finding.service';
+import { TextFormatService } from './app/services/text-format.service';
 
 @NgModule({
   imports: [
@@ -24,11 +24,11 @@ import { WordFindingService } from './app/word-finding.service';
     ReactiveFormsModule,
   ],
   entryComponents: [TextEditorComponent],
-  declarations: [TextEditorComponent, EditorHoverOptionsComponent],
+  declarations: [TextEditorComponent],
   bootstrap: [TextEditorComponent],
-  providers: [WordFindingService]
+  providers: [WordFindingService, TextFormatService]
 })
-export class AppModule {}
+export class AppModule { }
 
 platformBrowserDynamic().bootstrapModule(AppModule);
 

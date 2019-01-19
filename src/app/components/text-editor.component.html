@@ -34,8 +34,8 @@
 <div *ngIf="words?.length > 0">
     <p>Variants: </p>
     <mat-nav-list>
-        <mat-list-item *ngFor="let item of words">
-            <button mat-button (click)="change(item.word)">
+        <mat-list-item *ngFor="let item of words"  (click)="change(item.word)">
+            <button mat-button>
                 {{ item.word }}
             </button>
         </mat-list-item>
